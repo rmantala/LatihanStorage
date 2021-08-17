@@ -37,7 +37,6 @@ public class InternalActivity extends AppCompatActivity {
         btBacaFile.setOnClickListener(v -> bacaFile());
 
         btHapusFile.setOnClickListener(v -> hapusFile());
-
     }
 
     void buatFile() {
@@ -80,7 +79,7 @@ public class InternalActivity extends AppCompatActivity {
     }
 
     void hapusFile() {
-        //hapus private file yang berkaitan dengan context app ini
+        //metdho deleteFile() untuk hapus private file yang berkaitan dengan context app ini
         if (deleteFile(FILENAME)) {
             Toast.makeText(this, String.format("%s file has been deleted!", FILENAME), Toast.LENGTH_SHORT).show();
             tvBaca.setText("");
