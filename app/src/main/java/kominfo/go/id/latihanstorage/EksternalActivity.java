@@ -31,35 +31,35 @@ public class EksternalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_eksternal);
 
         //views to object
-        Button btBuatFile = findViewById(R.id.btBuatFile);
-        Button btUbahFile = findViewById(R.id.btUbahFile);
-        Button btBacaFile = findViewById(R.id.btBacaFile);
-        Button btHapusFile = findViewById(R.id.btHapusFile);
+        Button btBuatFile = findViewById(R.id.bt_buat_file);
+        Button btUbahFile = findViewById(R.id.bt_ubah_file);
+        Button btBacaFile = findViewById(R.id.bt_baca_file);
+        Button btHapusFile = findViewById(R.id.bt_hapus_file);
 
-        tvBaca = findViewById(R.id.tvBaca);
+        tvBaca = findViewById(R.id.tv_baca);
 
         //event handler with lambda
         btBuatFile.setOnClickListener(v -> {
             if (periksaIzinPenyimpanan()) {
-                event = R.id.btBuatFile;
+                event = R.id.bt_buat_file;
                 buatFile();
             }
         });
 
         btUbahFile.setOnClickListener(v -> {
             if (periksaIzinPenyimpanan()) {
-                event = R.id.btUbahFile;
+                event = R.id.bt_ubah_file;
                 ubahFile();
             }
         });
         btBacaFile.setOnClickListener(v -> {
             if (periksaIzinPenyimpanan())
-                event = R.id.btBacaFile;
+                event = R.id.bt_baca_file;
             bacaFile();
         });
         btHapusFile.setOnClickListener(v -> {
             if (periksaIzinPenyimpanan())
-                event = R.id.btHapusFile;
+                event = R.id.bt_hapus_file;
             hapusFile();
         });
     }
@@ -90,16 +90,16 @@ public class EksternalActivity extends AppCompatActivity {
 
     private void izinGranted(int event) {
         switch (event) {
-            case R.id.btBuatFile:
+            case R.id.bt_buat_file:
                 buatFile();
                 break;
-            case R.id.btUbahFile:
+            case R.id.bt_ubah_file:
                 ubahFile();
                 break;
-            case R.id.btBacaFile:
+            case R.id.bt_baca_file:
                 bacaFile();
                 break;
-            case R.id.btHapusFile:
+            case R.id.bt_hapus_file:
                 hapusFile();
                 break;
         }

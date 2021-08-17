@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/latihanStorage"
+        android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -21,19 +21,19 @@
         tools:ignore="HardcodedText" />
 
     <Button
-        android:id="@+id/btInternalStorage"
+        android:id="@+id/bt_internal_storage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="Internal Storage"
         android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@+id/latihanStorage"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
         tools:layout_editor_absoluteX="10dp"
         tools:ignore="HardcodedText" />
 
 
     <Button
-        android:id="@+id/btExternalStorage"
+        android:id="@+id/bt_external_storage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -41,7 +41,7 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btInternalStorage"
+        app:layout_constraintTop_toBottomOf="@+id/bt_internal_storage"
         tools:ignore="HardcodedText" />
 
 </android.support.constraint.ConstraintLayout>

@@ -13,8 +13,8 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
 
         //views to object
-        Button btInternalStorage = findViewById(R.id.btInternalStorage);
-        Button btExternalStorage = findViewById(R.id.btExternalStorage);
+        Button btInternalStorage = findViewById(R.id.bt_internal_storage);
+        Button btExternalStorage = findViewById(R.id.bt_external_storage);
 
         //event handler
         btInternalStorage.setOnClickListener(v -> {

@@ -1,9 +1,12 @@
 package kominfo.go.id.latihanstorage;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -12,10 +15,8 @@ import java.io.IOException;
 
 public class InternalActivity extends AppCompatActivity {
     public static final String FILENAME = "fileInternalStorage.txt";
+    private final String lineSeparator = System.getProperty("line.separator");
     private TextView tvBaca;
-
-    //ganti baris
-    private String lineSeparator = System.getProperty("line.separator");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +24,11 @@ public class InternalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_internal);
 
         //views to object
-        Button btBuatFile = findViewById(R.id.btBuatFile);
-        Button btUbahFile = findViewById(R.id.btUbahFile);
-        Button btBacaFile = findViewById(R.id.btBacaFile);
-        Button btHapusFile = findViewById(R.id.btHapusFile);
-        tvBaca = findViewById(R.id.tvBaca);
+        Button btBuatFile = findViewById(R.id.bt_buat_file);
+        Button btUbahFile = findViewById(R.id.bt_ubah_file);
+        Button btBacaFile = findViewById(R.id.bt_baca_file);
+        Button btHapusFile = findViewById(R.id.bt_hapus_file);
+        tvBaca = findViewById(R.id.tv_baca);
 
         //event handler with lambda
         btBuatFile.setOnClickListener(v -> buatFile());
@@ -41,13 +42,12 @@ public class InternalActivity extends AppCompatActivity {
     }
 
     void buatFile() {
-        String isiFile = "The Rolling Stones!";
-        File file = new File(getFilesDir(), FILENAME);
+        String isiFile = "Hai, saya adalah konten file - internal storage!";
 
-        //isi file ditambah terus (karena append: true)
-        try (FileOutputStream fos = new FileOutputStream(file, true)){
-            fos.write(isiFile.getBytes());
-            fos.write(lineSeparator.getBytes());
+        //method openFileOutput untuk membuat/membuka file di internal storage
+        try (FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_APPEND)){
+            fos.write(isiFile.getBytes());  //isiFile diubah ke bytes kemudian tulis ke file
+            fos.write(lineSeparator.getBytes()); //tambahkan line separator
             fos.flush();
         } catch (IOException e) {
             e.printStackTrace();
@@ -55,12 +55,12 @@ public class InternalActivity extends AppCompatActivity {
     }
 
     void ubahFile() {
-        String isiFile = "The Beatless!";
-        File file = new File(getFilesDir(), FILENAME);
+        String isiFileBaru = "Dirgahayu Republik Indonesia ke 76, Indonesia Bangkit!";
 
-        //isi file diganti (karena append: false)
-        try (FileOutputStream fos = new FileOutputStream(file, false)){
-            fos.write(isiFile.getBytes());
+        //konten file diganti
+        try (FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE)){
+            fos.write(isiFileBaru.getBytes());
+            fos.write(lineSeparator.getBytes());
             fos.flush();
         } catch (Exception e) {
             e.printStackTrace();
