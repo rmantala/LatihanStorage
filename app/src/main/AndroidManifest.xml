@@ -13,8 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InternalActivity"/>
-        <activity android:name=".EksternalActivity"/>
+        <activity android:name=".InternalActivity"
+            android:label="Internal Storage"/>
+        <activity android:name=".EksternalActivity"
+            android:label="External Storage"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
