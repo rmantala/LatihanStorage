@@ -4,13 +4,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.BufferedReader;
-import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 
 public class InternalActivity extends AppCompatActivity {
@@ -68,34 +67,25 @@ public class InternalActivity extends AppCompatActivity {
     }
 
     void bacaFile() {
-        File sdcard = getFilesDir();
-        File file = new File(sdcard, FILENAME);
-
-        if (file.exists()) {
-            StringBuilder text = new StringBuilder();
-            try {
-                BufferedReader br = new BufferedReader(new FileReader(file));
-                String line = br.readLine();
-
-                while (line != null) {
-                    text.append(line);
-                    text.append("\r\n");  //tambahkan baris baru
-                    line = br.readLine();
-                }
-                br.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+        StringBuilder sb = new StringBuilder();
+        try (FileInputStream fis = openFileInput(FILENAME)) {
+            int read;
+            while ((read = fis.read()) != -1) {
+                sb.append(((char)read));
             }
-
-            tvBaca.setText(text.toString());
+            tvBaca.setText(sb);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     void hapusFile() {
-        File file = new File(getFilesDir(), FILENAME);
-        if (file.exists() && file.delete()) {
+        //hapus private file yang berkaitan dengan context app ini
+        if (deleteFile(FILENAME)) {
+            Toast.makeText(this, String.format("%s file has been deleted!", FILENAME), Toast.LENGTH_SHORT).show();
             tvBaca.setText("");
         }
+
     }
 
 }
